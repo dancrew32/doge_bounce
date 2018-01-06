@@ -1,0 +1,93 @@
+<title>Wow.</title>
+<script>
+var context;
+var size = 300;
+var x=-5;
+var y=-3;
+var dx=1;
+var dy=1;
+var curwow='';
+var curwowx=0;
+var curwowy=0;
+var curwowc='red';
+var curwowf=20;
+var i = new Image();
+var w = function() {
+  return Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+};
+var h = function() {
+  return Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+};
+var colors = ['red', 'orange', 'yellow', 'blue', 'green', 'purple', 'teal'];
+var say = [
+  'wow', 
+  'so amaze', 
+  'such bounce', 
+  'much boing', 
+  'very excite',
+  'so coin',
+  'much circle',
+  'very currency',
+  'much wow',
+  'very signature',
+  'much design',
+  'beliebinshibe',
+  'much shibe'
+]; 
+i.src = 'http://dogecoin.com/imgs/dogecoin-300.png';
+
+function init() {
+  var doge = document.getElementById('doge');
+  doge.width = w();
+  doge.height = h();
+  if (!context) {
+    context = doge.getContext('2d');
+    setInterval(draw, 10);
+    setInterval(wow, 3000);
+  }
+}
+
+function rand(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function draw() {
+  context.clearRect(0, 0, w(), h());
+  context.drawImage(i, x, y);
+
+  if (x < -5 || x + size - 5 > w()) {
+    dx = -dx; 
+  }
+  if (y < -5 || y + size - 4 > h()) { 
+    dy = -dy; 
+  }
+  x += dx; 
+  y += dy;
+
+  if (curwow) {
+    context.font = curwowf + 'px Comic Sans MS';
+    context.fillStyle = curwowc;
+    context.fillText(curwow, curwowx, curwowy);
+  }
+}
+
+function wow() {
+  curwow = say[rand(0, say.length)];
+  document.title = curwow || 'Wow.';
+  curwowx = rand(10, w() - 200);
+  curwowy = rand(20, h() - 10);
+  curwowc = colors[rand(0, colors.length)];
+  curwowf = rand(16, 35);
+  setTimeout(function() {
+    curwow = '';
+  }, rand(1000, 2000));
+}
+
+window.onresize = init;
+
+</script>
+<style>html, body {background-color: #000;margin: 0; padding: 0; height: 100%;}</style>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<body onLoad="init()">
+  <canvas id="doge"></canvas>
+</body>
