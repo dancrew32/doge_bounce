@@ -2,6 +2,8 @@
 
 Much DogeCoin Bouncing.
 
+![http://dogecoin.com/imgs/dogecoin-300.png](wow)
+
 
 # Demo
 
